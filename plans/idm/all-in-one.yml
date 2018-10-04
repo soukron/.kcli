@@ -1,0 +1,19 @@
+parameters:
+ net: [[ net ]]
+ domain: [[ domain ]]
+ password: [[ password ]]
+
+idm:
+ profile: large
+ domain: [[ domain ]]
+ dns: [[ domain ]]
+ nets:
+  - [[ net ]]
+ disks:
+  - size: 40
+ scripts: 
+   - ~/.kcli/scripts/fix-static.sh
+   - ~/.kcli/scripts/register.sh
+   - scripts/all-in-one.sh
+   - ~/.kcli/scripts/fix-cloud.sh
+   - ~/.kcli/scripts/reboot.sh
