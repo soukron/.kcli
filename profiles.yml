@@ -1,0 +1,30 @@
+# Based on AWS t3 instances definitions
+# https://aws.amazon.com/es/ec2/instance-types/
+
+nano:
+  numcpus: 2
+  memory: 512
+
+micro:
+  numcpus: 2
+  memory: 1024
+
+small:
+  numcpus: 2
+  memory: 2048
+
+medium:
+  numcpus: 2
+  memory: 4096
+
+large:
+  numcpus: 2
+  memory: 8192
+
+xlarge:
+  numcpus: 4
+  memory: 16384
+
+x2large:
+  numcpus: 8
+  memory: 32768

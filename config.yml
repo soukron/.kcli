@@ -1,0 +1,28 @@
+default:
+  client: local
+  cloudinit: true
+  enableroot: true
+  insecure: true
+  nested: true
+  start: true
+  tunnel: false
+  template: rhel-server-7.5-x86_64-kvm.qcow2
+  numcpus: 1
+  memory: 512
+  pool: default
+  diskthin: true
+  disks:
+    - 20
+  nets:
+    - default
+  reserveip: True
+  reservedns: True
+  reservehosts: True
+  cmds:
+    - echo root | passwd --stdin root
+    - echo cloud-user | passwd --stdin cloud-user
+
+local:
+  pool: default
+  nets:
+    - default
