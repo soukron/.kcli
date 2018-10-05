@@ -18,6 +18,11 @@
   file: multi-node.yml
   description: Red Hat OpenShift 3.10 - Simple cluster
   numvms: 3
+  parameters:
+    masters: 1
+    name: 'ocp310simple'
+    nodes: 1
+    version: '3.10'
 
 - name: ocp310-base
   group: ocp
@@ -25,6 +30,11 @@
   file: multi-node.yml
   description: Red Hat OpenShift 3.10 - Base cluster
   numvms: 6
+  parameters:
+    masters: 3
+    name: 'ocp310base'
+    nodes: 2
+    version: '3.10'
 
 - name: ocp310-full
   group: ocp
@@ -32,3 +42,188 @@
   file: multi-node.yml
   description: Red Hat OpenShift 3.10 - Full cluster
   numvms: 8
+  parameters:
+    masters: 3
+    name: 'ocp310full'
+    nodes: 4
+    version: '3.10'
+
+- name: ocp39-simple
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.9 - Simple cluster
+  numvms: 3
+  parameters:
+    masters: 1
+    name: 'ocp39simple'
+    nodes: 1
+    version: '3.9'
+
+- name: ocp39-base
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.9 - Base cluster
+  numvms: 6
+  parameters:
+    masters: 3
+    name: 'ocp39base'
+    nodes: 2
+    version: '3.9'
+
+- name: ocp39-full
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.9 - Full cluster
+  numvms: 8
+  parameters:
+    masters: 3
+    name: 'ocp39full'
+    nodes: 4
+    version: '3.9'
+
+- name: ocp37-simple
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.7 - Simple cluster
+  numvms: 3
+  parameters:
+    masters: 1
+    name: 'ocp37simple'
+    nodes: 1
+    version: '3.7'
+
+- name: ocp37-base
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.7 - Base cluster
+  numvms: 6
+  parameters:
+    masters: 3
+    name: 'ocp37base'
+    nodes: 2
+    version: '3.7'
+
+- name: ocp37-full
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.7 - Full cluster
+  numvms: 8
+  parameters:
+    masters: 3
+    name: 'ocp37full'
+    nodes: 4
+    version: '3.7'
+
+- name: ocp36-simple
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.6 - Simple cluster
+  numvms: 3
+  parameters:
+    masters: 1
+    name: 'ocp36simple'
+    nodes: 1
+    version: '3.6'
+
+- name: ocp36-base
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.6 - Base cluster
+  numvms: 6
+  parameters:
+    masters: 3
+    name: 'ocp36base'
+    nodes: 2
+    version: '3.6'
+
+- name: ocp36-full
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.6 - Full cluster
+  numvms: 8
+  parameters:
+    masters: 3
+    name: 'ocp36full'
+    nodes: 4
+    version: '3.6'
+
+- name: ocp35-simple
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.5 - Simple cluster
+  numvms: 3
+  parameters:
+    masters: 1
+    name: 'ocp35simple'
+    nodes: 1
+    version: '3.5'
+
+- name: ocp35-base
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.5 - Base cluster
+  numvms: 6
+  parameters:
+    masters: 3
+    name: 'ocp35base'
+    nodes: 2
+    version: '3.5'
+
+- name: ocp35-full
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.5 - Full cluster
+  numvms: 8
+  parameters:
+    masters: 3
+    name: 'ocp35full'
+    nodes: 4
+    version: '3.5'
+
+- name: ocp34-simple
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.4 - Simple cluster
+  numvms: 3
+  parameters:
+    masters: 1
+    name: 'ocp34simple'
+    nodes: 1
+    version: '3.4'
+
+- name: ocp34-base
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.4 - Base cluster
+  numvms: 6
+  parameters:
+    masters: 3
+    name: 'ocp34base'
+    nodes: 2
+    version: '3.4'
+
+- name: ocp34-full
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.4 - Full cluster
+  numvms: 8
+  parameters:
+    masters: 3
+    name: 'ocp34full'
+    nodes: 4
+    version: '3.4'
