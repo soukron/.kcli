@@ -12,6 +12,18 @@
   description: Red Hat Identity Management - All-In-One
   numvms: 1
 
+- name: ocp
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.10 - Generic cluster
+  numvms: 3
+  parameters:
+    masters: 1
+    name: 'ocp'
+    nodes: 1
+    version: '3.10'
+
 - name: ocp310-simple
   group: ocp
   url: github.com/soukron/.kcli/plans/openshift
