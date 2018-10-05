@@ -1,7 +1,7 @@
 parameters:
- net: [[ net ]]
- domain: [[ domain ]]
- password: [[ password ]]
+ domain: 'default'
+ net: 'default'
+ password: 'admin123'
 
 idm:
  profile: large

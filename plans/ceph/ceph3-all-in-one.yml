@@ -1,6 +1,6 @@
 parameters:
- domain: [[ domain ]]
- net: [[ net ]]
+ domain: 'default'
+ net: 'default'
 
 ceph:
  profile: xlarge

@@ -1,8 +1,8 @@
 parameters:
- name: 'ocp310'
  domain: 'default'
- net: 'default'
  masters: 1
+ name: 'ocp310'
+ net: 'default'
  nodes: 2
  version: '3.10'
 
