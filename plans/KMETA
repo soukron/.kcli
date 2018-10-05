@@ -1,0 +1,34 @@
+- name: ceph3-all-in-one
+  group: ceph
+  url: github.com/soukron/.kcli/plans/ceph
+  file: ceph3-all-in-one.yml
+  description: Red Hat Ceph Storage 3 - All-In-One
+  numvms: 1
+
+- name: idm-all-in-one
+  group: idm
+  url: github.com/soukron/.kcli/plans/idm
+  file: all-in-one.yml
+  description: Red Hat Identity Management - All-In-One
+  numvms: 1
+
+- name: ocp310-simple
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.10 - Simple cluster
+  numvms: 3
+
+- name: ocp310-base
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.10 - Base cluster
+  numvms: 6
+
+- name: ocp310-full
+  group: ocp
+  url: github.com/soukron/.kcli/plans/openshift
+  file: multi-node.yml
+  description: Red Hat OpenShift 3.10 - Full cluster
+  numvms: 8
