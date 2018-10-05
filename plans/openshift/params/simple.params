@@ -1,0 +1,7 @@
+parameters:
+ name: 'simple'
+ domain: 'default'
+ net: 'default'
+ masters: 1
+ nodes: 1
+ version: '3.10'

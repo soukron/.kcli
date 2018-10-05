@@ -1,0 +1,52 @@
+[OSEv3:children]
+masters
+lb
+nodes
+etcd
+
+[OSEv3:vars]
+ansible_ssh_user=cloud-user
+ansible_ssh_passwd=cloud-user
+ansible_become=true
+openshift_deployment_type=openshift-enterprise
+
+openshift_disable_check=disk_availability,memory_availability
+
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+openshift_master_htpasswd_users={'admin':'$apr1$n5wT0FX/$Qoxr9tYwdiu2iN.gOei7A1'}
+
+openshift_master_cluster_method=native
+openshift_master_cluster_hostname=console.[[ name ]].[[ domain ]]
+openshift_master_cluster_public_hostname=console.[[ name ]].[[ domain ]]
+openshift_master_default_subdomain=apps.[[ name ]].[[ domain ]]
+
+os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
+
+openshift_clock_enabled=true
+
+openshift_router_selector="region=master-infra"
+openshift_registry_selector="region=master-infra"
+osm_default_node_selector="region=node"
+
+openshift_enable_service_catalog=false
+template_service_broker_install=false
+ansible_service_broker_install=false
+
+[masters]
+[% for master in range(0, masters) -%]
+[[ name ]]-master0[[ master +1 ]].[[ domain ]]
+[% endfor %]
+[lb]
+[[ name ]]-masterlb.[[ domain ]]
+
+[etcd]
+[% for master in range(0, masters) -%]
+[[ name ]]-master0[[ master +1 ]].[[ domain ]]
+[% endfor %]
+[nodes]
+[% for master in range(0, masters) -%]
+[[ name ]]-master0[[ master +1 ]].[[ domain ]] openshift_node_labels="{'region': 'master-infra', 'zone': 'default'}" openshift_schedulable=true
+[% endfor -%]
+[% for node in range(0, nodes) -%]
+[[ name ]]-node0[[ node +1 ]].[[ domain ]] openshift_node_labels="{'region': 'node', 'zone': 'default'}"
+[% endfor -%]

@@ -1,0 +1,27 @@
+# Source: https://docs.openshift.com/container-platform/3.7/install_config/install/host_preparation.html
+
+# Enable repositories
+subscription-manager repos \
+    --enable="rhel-7-server-rpms" \
+    --enable="rhel-7-server-extras-rpms" \
+    --enable="rhel-7-server-ose-3.7-rpms" \
+    --enable="rhel-7-fast-datapath-rpms"
+
+# Update
+yum update -y
+
+# Installing Base Packages
+yum install -y wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct nano
+yum install -y atomic-openshift-utils
+
+# Installing Docker
+yum install -y docker-1.12.6
+
+# Configuring Docker Storage (Option A)
+echo DEVS=/dev/vdb >/etc/sysconfig/docker-storage-setup
+echo VG=docker-vg >>/etc/sysconfig/docker-storage-setup
+docker-storage-setup
+systemctl enable --now docker
+
+# Enabling Image Signature Support (default config)
+yum install -y atomic
