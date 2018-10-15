@@ -35,6 +35,7 @@ parameters:
   - name: [[ net ]]
     alias:
      - console.[[ name ]].[[ domain ]]
+     - console-int.[[ name ]].[[ domain ]]
  disks:
   - size: 60
  
