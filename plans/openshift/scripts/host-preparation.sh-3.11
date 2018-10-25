@@ -1,0 +1,24 @@
+# Source: https://docs.openshift.com/container-platform/3.10/install/host_preparation.html
+
+# Enable repositories
+subscription-manager repos \
+    --enable="rhel-7-server-rpms" \
+    --enable="rhel-7-server-extras-rpms" \
+    --enable="rhel-7-server-ose-3.11-rpms" \
+    --enable="rhel-7-server-ansible-2.6-rpms"
+
+# Update 
+yum update -y
+
+# Installing Base Packages
+yum install -y wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct nano
+yum install -y openshift-ansible
+
+# Installing Docker
+yum install -y docker-1.13.1
+
+# Configuring Docker Storage (Option A)
+echo DEVS=/dev/vdb >/etc/sysconfig/docker-storage-setup
+echo VG=docker-vg >>/etc/sysconfig/docker-storage-setup
+docker-storage-setup
+systemctl enable --now docker
