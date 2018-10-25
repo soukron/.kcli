@@ -1,7 +1,0 @@
-parameters:
- domain: 'default'
- masters: 3
- name: 'base'
- net: 'default'
- nodes: 2
- version: '3.10'
