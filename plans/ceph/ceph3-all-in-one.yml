@@ -15,6 +15,5 @@ ceph:
   - path: /root/all-in-one.sh
     origin: files/ceph3-all-in-one.sh
  scripts: 
-  - ~/.kcli/scripts/fix-static.sh
   - ~/.kcli/scripts/register.sh
   - scripts/run-all-in-one.sh

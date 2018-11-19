@@ -21,7 +21,6 @@ parameters:
   - size: 60
  pool: default
  scripts: 
-  - ~/.kcli/scripts/fix-static.sh
   - ~/.kcli/scripts/register.sh
   - scripts/host-preparation.sh-[[ version ]]
   - ~/.kcli/scripts/fix-cloud.sh

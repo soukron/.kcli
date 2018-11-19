@@ -12,7 +12,6 @@ idm:
  disks:
   - size: 40
  scripts: 
-   - ~/.kcli/scripts/fix-static.sh
    - ~/.kcli/scripts/register.sh
    - scripts/all-in-one.sh
    - ~/.kcli/scripts/fix-cloud.sh
