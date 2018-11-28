@@ -4,10 +4,10 @@ parameters:
 
 ceph:
  profile: xlarge
- domain: [[ domain ]]
- dns: [[ domain ]]
+ domain: {{ domain }}
+ dns: {{ domain }}
  nets:
-  - [[ net ]]
+  - {{ net }}
  disks:
   - size: 10
   - size: 100

@@ -5,10 +5,10 @@ parameters:
 
 idm:
  profile: large
- domain: [[ domain ]]
- dns: [[ domain ]]
+ domain: {{ domain }}
+ dns: {{ domain }}
  nets:
-  - [[ net ]]
+  - {{ net }}
  disks:
   - size: 40
  scripts: 

@@ -6,49 +6,49 @@ parameters:
  nodes: 2
  version: '3.10'
 
-[[ name ]]-node:
+{{ name }}-node:
  type: profile
  template: rhel-server-7.5-x86_64-kvm.qcow2
  numcpus: 4
  memory: 8192
  sharedkey: True
- domain: [[ domain ]]
- dns: [[ domain ]]
+ domain: {{ domain }}
+ dns: {{ domain }}
  nets:
-  - [[ net ]]
+  - {{ net }}
  disks:
   - size: 60
   - size: 60
  pool: default
  scripts: 
   - ~/.kcli/scripts/register.sh
-  - scripts/host-preparation.sh-[[ version ]]
+  - scripts/host-preparation.sh-{{ version }}
   - ~/.kcli/scripts/fix-cloud.sh
   - ~/.kcli/scripts/reboot.sh
 
-[[ name ]]-masterlb:
- profile: [[ name ]]-node
+{{ name }}-masterlb:
+ profile: {{ name }}-node
  numcpus: 2
  memory: 4096
  nets:
-  - name: [[ net ]]
+  - name: {{ net }}
     alias:
-     - console.[[ name ]].[[ domain ]]
-     - console-int.[[ name ]].[[ domain ]]
+     - console.{{ name }}.{{ domain }}
+     - console-int.{{ name }}.{{ domain }}
  disks:
   - size: 60
  
-[% for master in range(0, masters | int) %]
-[[ name ]]-master0[[ master + 1 ]]:
- profile: [[ name ]]-node
+{% for master in range(0, masters | int) %}
+{{ name }}-master0{{ master + 1 }}:
+ profile: {{ name }}-node
  numcpus: 4
  memory: 16384
  files:
   - path: /root/hosts
-    origin: files/hosts-multi-node-[[ version ]]
-[% endfor %]
+    origin: files/hosts-multi-node-{{ version }}
+{% endfor %}
 
-[% for node in range(0, nodes | int) %]
-[[ name ]]-node0[[ node + 1 ]]:
- profile: [[ name ]]-node
-[% endfor %]
+{% for node in range(0, nodes | int) %}
+{{ name }}-node0{{ node + 1 }}:
+ profile: {{ name }}-node
+{% endfor %}
