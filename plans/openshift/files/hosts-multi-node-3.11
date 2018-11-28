@@ -16,9 +16,9 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 openshift_master_htpasswd_users={'admin':'$apr1$n5wT0FX/$Qoxr9tYwdiu2iN.gOei7A1'}
 
 openshift_master_cluster_method=native
-openshift_master_cluster_hostname=console.[[ name ]].[[ domain ]]
-openshift_master_cluster_public_hostname=console.[[ name ]].[[ domain ]]
-openshift_master_default_subdomain=apps.[[ name ]].[[ domain ]]
+openshift_master_cluster_hostname=console.{{ name }}.{{ domain }}
+openshift_master_cluster_public_hostname=console.{{ name }}.{{ domain }}
+openshift_master_default_subdomain=apps.{{ name }}.{{ domain }}
 
 os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 
@@ -35,20 +35,20 @@ ansible_service_broker_install=false
 oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 
 [masters]
-[% for master in range(0, masters) -%]
-[[ name ]]-master0[[ master +1 ]].[[ domain ]]
-[% endfor %]
+{% for master in range(0, masters) -%}
+{{ name }}-master0{{ master +1 }}.{{ domain }}
+{% endfor %}
 [lb]
-[[ name ]]-masterlb.[[ domain ]]
+{{ name }}-masterlb.{{ domain }}
 
 [etcd]
-[% for master in range(0, masters) -%]
-[[ name ]]-master0[[ master +1 ]].[[ domain ]]
-[% endfor %]
+{% for master in range(0, masters) -%}
+{{ name }}-master0{{ master +1 }}.{{ domain }}
+{% endfor %}
 [nodes]
-[% for master in range(0, masters) -%]
-[[ name ]]-master0[[ master +1 ]].[[ domain ]] openshift_node_group_name='node-config-master-infra'
-[% endfor -%]
-[% for node in range(0, nodes) -%]
-[[ name ]]-node0[[ node +1 ]].[[ domain ]] openshift_node_group_name='node-config-compute'
-[% endfor %]
+{% for master in range(0, masters) -%}
+{{ name }}-master0{{ master +1 }}.{{ domain }} openshift_node_group_name='node-config-master-infra'
+{% endfor -%}
+{% for node in range(0, nodes) -%}
+{{ name }}-node0{{ node +1 }}.{{ domain }} openshift_node_group_name='node-config-compute'
+{% endfor %}
