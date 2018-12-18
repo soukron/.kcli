@@ -1,0 +1,31 @@
+# Source: https://docs.openshift.com/container-platform/3.3/install_config/install/host_preparation.html
+
+# Enable repositories
+subscription-manager repos \
+    --enable="rhel-7-server-rpms" \
+    --enable="rhel-7-server-extras-rpms" \
+    --enable="rhel-7-server-ose-3.3-rpms"
+
+# Update
+yum update -y
+
+# Installing Base Packages
+yum install -y wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct nano
+yum install -y atomic-openshift-utils
+
+# Downgrade ansible to 2.3.2
+yum downgrade -y ansible-2.3.2.0-2.el7.noarch
+
+# Install excluders (Docker 1.12)
+yum install -y atomic-openshift-excluder atomic-openshift-docker-excluder
+atomic-openshift-excluder unexclude
+
+# Installing Docker
+yum install -y docker
+sed -i '/OPTIONS=.*/c\OPTIONS="--selinux-enabled --insecure-registry 172.30.0.0/16"' /etc/sysconfig/docker
+
+# Configuring Docker Storage (Option A)
+echo DEVS=/dev/vdb >/etc/sysconfig/docker-storage-setup
+echo VG=docker-vg >>/etc/sysconfig/docker-storage-setup
+docker-storage-setup
+systemctl enable --now docker

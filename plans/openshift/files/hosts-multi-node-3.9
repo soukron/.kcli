@@ -16,7 +16,7 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 openshift_master_htpasswd_users={'admin':'$apr1$n5wT0FX/$Qoxr9tYwdiu2iN.gOei7A1'}
 
 openshift_master_cluster_method=native
-openshift_master_cluster_hostname=console.{{ name }}.{{ domain }}
+openshift_master_cluster_hostname=console-int.{{ name }}.{{ domain }}
 openshift_master_cluster_public_hostname=console.{{ name }}.{{ domain }}
 openshift_master_default_subdomain=apps.{{ name }}.{{ domain }}
 

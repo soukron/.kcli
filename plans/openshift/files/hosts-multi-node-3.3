@@ -8,7 +8,7 @@ etcd
 ansible_ssh_user=cloud-user
 ansible_ssh_passwd=cloud-user
 ansible_become=true
-deployment_type=openshift-enterprise
+openshift_deployment_type=openshift-enterprise
 
 openshift_disable_check=disk_availability,memory_availability
 
@@ -29,20 +29,20 @@ openshift_registry_selector="region=master-infra"
 osm_default_node_selector="region=node"
 
 [masters]
-{% for master in range(0, masters) -%}
+[% for master in range(0, masters) -%]
 {{ name }}-master0{{ master +1 }}.{{ domain }}
-{% endfor %}
+[% endfor %]
 [lb]
 {{ name }}-masterlb.{{ domain }}
 
 [etcd]
-{% for master in range(0, masters) -%}
+[% for master in range(0, masters) -%]
 {{ name }}-master0{{ master +1 }}.{{ domain }}
-{% endfor %}
+[% endfor %]
 [nodes]
-{% for master in range(0, masters) -%}
+[% for master in range(0, masters) -%]
 {{ name }}-master0{{ master +1 }}.{{ domain }} openshift_node_labels="{'region': 'master-infra', 'zone': 'default'}" openshift_schedulable=true
-{% endfor -%}
-{% for node in range(0, nodes) -%}
+[% endfor -%]
+[% for node in range(0, nodes) -%]
 {{ name }}-node0{{ node +1 }}.{{ domain }} openshift_node_labels="{'region': 'node', 'zone': 'default'}"
-{% endfor -%}
+[% endfor -%]
