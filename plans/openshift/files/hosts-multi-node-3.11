@@ -32,6 +32,9 @@ openshift_enable_service_catalog=false
 template_service_broker_install=false
 ansible_service_broker_install=false
 
+openshift_metrics_install_metrics=true
+openshift_metrics_server_install=true
+
 oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 
 [masters]
