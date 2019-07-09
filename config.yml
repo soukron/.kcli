@@ -26,3 +26,4 @@ local:
   pool: default
   nets:
     - default
+  keep_networks: True

@@ -1,12 +1,14 @@
 parameters:
  domain: 'default'
  masters: 1
- name: 'ocp310'
+ cluster_name: 'ocp310'
  net: 'default'
  nodes: 2
  version: '3.10'
+ glusterfs: false
+ glusterfs_disk: vdc
 
-{{ name }}-node:
+{{ cluster_name }}-node:
  type: profile
  template: rhel-server-7.6-x86_64-kvm.qcow2
  numcpus: 4
@@ -16,9 +18,6 @@ parameters:
  dns: {{ domain }}
  nets:
   - {{ net }}
- disks:
-  - size: 60
-  - size: 60
  pool: default
  scripts: 
   - ~/.kcli/scripts/register.sh
@@ -26,29 +25,41 @@ parameters:
   - ~/.kcli/scripts/fix-cloud.sh
   - ~/.kcli/scripts/reboot.sh
 
-{{ name }}-masterlb:
- profile: {{ name }}-node
+{{ cluster_name }}-masterlb:
+ profile: {{ cluster_name }}-node
  numcpus: 2
  memory: 4096
  nets:
   - name: {{ net }}
     alias:
-     - console.{{ name }}.{{ domain }}
-     - console-int.{{ name }}.{{ domain }}
+     - console.{{ cluster_name }}.{{ domain }}
+     - console-int.{{ cluster_name }}.{{ domain }}
  disks:
   - size: 60
  
 {% for master in range(0, masters | int) %}
-{{ name }}-master0{{ master + 1 }}:
- profile: {{ name }}-node
+{{ cluster_name }}-master0{{ master + 1 }}:
+ profile: {{ cluster_name }}-node
  numcpus: 4
  memory: 16384
+ disks:
+  - size: 60
+  - size: 60
+{% if glusterfs and nodes < 3 -%}
+  - size: 100
+{%- endif %}
  files:
   - path: /root/hosts
     origin: files/hosts-multi-node-{{ version }}
 {% endfor %}
 
 {% for node in range(0, nodes | int) %}
-{{ name }}-node0{{ node + 1 }}:
- profile: {{ name }}-node
+{{ cluster_name }}-node0{{ node + 1 }}:
+ profile: {{ cluster_name }}-node
+ disks:
+  - size: 60
+  - size: 60
+{% if glusterfs -%}
+  - size: 100
+{%- endif %}
 {% endfor %}
