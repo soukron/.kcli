@@ -7,10 +7,11 @@ parameters:
  version: '3.11'
  glusterfs: false
  glusterfs_disk: vdc
+ rhel_template: 'rhel-server-7.6-x86_64-kvm.qcow2'
 
 {{ cluster_name }}-node:
  type: profile
- template: rhel-server-7.6-x86_64-kvm.qcow2
+ template: {{ rhel_template }}
  numcpus: 4
  memory: 8192
  sharedkey: True
