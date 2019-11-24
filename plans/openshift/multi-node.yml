@@ -9,6 +9,7 @@ parameters:
  glusterfs_disk: vdc
  rhel_template: 'rhel-server-7.6-x86_64-kvm.qcow2'
  etcds: 0
+ time_zone: 'UTC'
 
 {{ cluster_name }}-node:
  type: profile
@@ -24,6 +25,7 @@ parameters:
  scripts: 
   - ~/.kcli/scripts/register.sh
   - scripts/host-preparation.sh-{{ version }}
+  - scripts/host-preparation-common.sh
   - ~/.kcli/scripts/fix-cloud.sh
   - ~/.kcli/scripts/reboot.sh
 
