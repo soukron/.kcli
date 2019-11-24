@@ -52,16 +52,20 @@ openshift_storage_glusterfs_block_deploy=false
 [masters]
 {% for master in range(0, masters) -%}
 {{ cluster_name }}-master0{{ master +1 }}.{{ domain }}
-{% endfor -%}
-
+{% endfor %}
 [lb]
 {{ cluster_name }}-masterlb.{{ domain }}
 
 [etcd]
+{% if etcds > 0 -%}
+{% for etcd in range(0, etcds) -%}
+{{ cluster_name }}-etcd0{{ etcd +1 }}.{{ domain }}
+{% endfor %}
+{%- else -%}
 {% for master in range(0, masters) -%}
 {{ cluster_name }}-master0{{ master +1 }}.{{ domain }}
-{% endfor -%}
-
+{% endfor %}
+{% endif %}
 [nodes]
 {% for master in range(0, masters) -%}
 {{ cluster_name }}-master0{{ master +1 }}.{{ domain }} openshift_node_group_name='node-config-master-infra'
