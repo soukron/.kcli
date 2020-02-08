@@ -1,16 +1,19 @@
 parameters:
  domain: 'default'
  masters: 1
- cluster_name: 'ocp310'
+ cluster_name: 'ocp311'
  net: 'default'
  nodes: 2
- version: '3.10'
+ version: '3.11'
  glusterfs: false
  glusterfs_disk: vdc
+ rhel_template: 'rhel-server-7.6-x86_64-kvm.qcow2'
+ etcds: 0
+ time_zone: 'UTC'
 
 {{ cluster_name }}-node:
  type: profile
- template: rhel-server-7.6-x86_64-kvm.qcow2
+ template: {{ rhel_template }}
  numcpus: 4
  memory: 8192
  sharedkey: True
@@ -22,6 +25,7 @@ parameters:
  scripts: 
   - ~/.kcli/scripts/register.sh
   - scripts/host-preparation.sh-{{ version }}
+  - scripts/host-preparation-common.sh
   - ~/.kcli/scripts/fix-cloud.sh
   - ~/.kcli/scripts/reboot.sh
 
@@ -51,6 +55,16 @@ parameters:
  files:
   - path: /root/hosts
     origin: files/hosts-multi-node-{{ version }}
+{% endfor %}
+
+{% for etcd in range(0, etcds | int) %}
+{{ cluster_name }}-etcd0{{ etcd + 1 }}:
+ profile: {{ cluster_name }}-node
+ numcpus: 4
+ memory: 16384
+ disks:
+  - size: 60
+  - size: 60
 {% endfor %}
 
 {% for node in range(0, nodes | int) %}

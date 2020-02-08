@@ -1,4 +1,4 @@
-# Source: https://docs.openshift.com/container-platform/3.10/install/host_preparation.html
+# Source: https://docs.openshift.com/container-platform/3.11/install/host_preparation.html
 
 # Enable repositories
 subscription-manager repos \

@@ -6,7 +6,7 @@ default:
   nested: true
   start: true
   tunnel: false
-  template: rhel-server-7.5-x86_64-kvm.qcow2
+  template: rhel-server-7.7-x86_64-kvm.qcow2
   numcpus: 1
   memory: 512
   pool: default
@@ -19,8 +19,8 @@ default:
   reservedns: True
   reservehosts: True
   cmds:
-    - echo root | passwd --stdin root
-    - echo cloud-user | passwd --stdin cloud-user
+    - echo root | passwd --stdin root || true
+    - echo cloud-user | passwd --stdin cloud-user || true
 
 local:
   pool: default
