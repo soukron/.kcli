@@ -55,6 +55,8 @@ parameters:
  files:
   - path: /root/hosts
     origin: files/hosts-multi-node-{{ version }}
+  - path: /root/ansible.cfg
+    origin: files/ansible.cfg-{{ version }}
 {% endfor %}
 
 {% for etcd in range(0, etcds | int) %}
