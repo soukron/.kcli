@@ -7,7 +7,7 @@ parameters:
  version: '3.11'
  glusterfs: false
  glusterfs_disk: vdc
- rhel_template: 'rhel-server-7.6-x86_64-kvm.qcow2'
+ rhel_template: 'rhel-server-7.8-x86_64-kvm.qcow2'
  etcds: 0
  time_zone: 'UTC'
 
