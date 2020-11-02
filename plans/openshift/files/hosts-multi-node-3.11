@@ -14,6 +14,11 @@ ansible_become=true
 openshift_deployment_type=openshift-enterprise
 openshift_release=v3.11
 
+{% if errata!=version -%}
+openshift_image_tag=v{{ errata }}
+openshift_pkg_version=-{{ errata }}
+{%- endif %}
+
 openshift_disable_check=disk_availability,memory_availability
 
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]

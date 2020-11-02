@@ -5,6 +5,7 @@ parameters:
  net: 'default'
  nodes: 2
  version: '3.11'
+ errata: '3.11'
  glusterfs: false
  glusterfs_disk: vdc
  rhel_template: 'rhel-server-7.8-x86_64-kvm.qcow2'
