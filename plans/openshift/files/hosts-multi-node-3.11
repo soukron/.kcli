@@ -44,7 +44,11 @@ ansible_service_broker_install=false
 openshift_metrics_install_metrics=true
 openshift_metrics_server_install=true
 
-oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
+oreg_url={{ oreg_url }}
+{% if oreg_auth_user!='' and oreg_auth_password!='' -%}
+oreg_auth_user="{{ oreg_auth_user }}"
+oreg_auth_password="{{ oreg_auth_password }}"
+{%- endif %}
 
 {% if glusterfs -%}
 openshift_storage_glusterfs_namespace=app-storage

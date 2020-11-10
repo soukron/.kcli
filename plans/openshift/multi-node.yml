@@ -11,6 +11,9 @@ parameters:
  rhel_template: 'rhel-server-7.8-x86_64-kvm.qcow2'
  etcds: 0
  time_zone: 'UTC'
+ oreg_url: 'registry.access.redhat.com/openshift3/ose-${component}:${version}'
+ oreg_auth_user: ''
+ oreg_auth_password: ''
 
 {{ cluster_name }}-node:
  type: profile
