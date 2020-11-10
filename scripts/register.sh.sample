@@ -1,4 +1,4 @@
 sleep $[ ( $RANDOM % 10 ) + 1 ]s
 subscription-manager register --force --username=<rhn_user> --password=<rhn_password>
-subscription-manager attach --pool=<employee_sku_pool_id>
+subscription-manager attach --pool=<sku_pool_id>
 subscription-manager repos --disable="*" --enable=rhel-7-server-rpms
