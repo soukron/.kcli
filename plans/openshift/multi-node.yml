@@ -79,7 +79,7 @@ parameters:
  disks:
   - size: 60
   - size: 60
-{% if glusterfs -%}
+{% if glusterfs %}
   - size: 100
-{%- endif %}
+{% endif %}
 {% endfor %}
