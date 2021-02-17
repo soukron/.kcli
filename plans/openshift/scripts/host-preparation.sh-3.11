@@ -5,7 +5,7 @@ subscription-manager repos \
     --enable="rhel-7-server-rpms" \
     --enable="rhel-7-server-extras-rpms" \
     --enable="rhel-7-server-ose-3.11-rpms" \
-    --enable="rhel-7-server-ansible-2.6-rpms"
+    --enable="rhel-7-server-ansible-2.9-rpms"
 
 # Update 
 yum update -y
@@ -18,7 +18,12 @@ yum install -y openshift-ansible
 yum install -y docker-1.13.1
 
 # Configuring Docker Storage (Option A)
-echo DEVS=/dev/vdb >/etc/sysconfig/docker-storage-setup
+echo STORAGE_DRIVER=overlay2 > /etc/sysconfig/docker-storage-setup
+echo DEVS=/dev/vdb >>/etc/sysconfig/docker-storage-setup
 echo VG=docker-vg >>/etc/sysconfig/docker-storage-setup
-docker-storage-setup
+echo 'DATA_SIZE=99%VG' >>/etc/sysconfig/docker-storage-setup
+echo 'CONTAINER_ROOT_LV_NAME=docker-root-lv' >>/etc/sysconfig/docker-storage-setup
+echo 'CONTAINER_ROOT_LV_SIZE=100%FREE' >>/etc/sysconfig/docker-storage-setup
+echo 'CONTAINER_ROOT_LV_MOUNT_PATH=/var/lib/docker' >>/etc/sysconfig/docker-storage-setup
+container-storage-setup
 systemctl enable --now docker
