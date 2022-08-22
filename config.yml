@@ -7,8 +7,8 @@ default:
   start: true
   tunnel: false
   template: rhel-server-7.8-x86_64-kvm.qcow2
-  numcpus: 1
-  memory: 512
+  numcpus: 2
+  memory: 1024
   pool: default
   diskthin: true
   disks:
