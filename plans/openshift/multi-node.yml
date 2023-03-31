@@ -26,6 +26,7 @@ parameters:
  nets:
   - {{ net }}
  pool: default
+ rhnregister: false
  scripts: 
   - ~/.kcli/scripts/register.sh
   - scripts/host-preparation.sh-{{ version }}
@@ -37,6 +38,7 @@ parameters:
  profile: {{ cluster_name }}-node
  numcpus: 2
  memory: 4096
+ rhnregister: false
  nets:
   - name: {{ net }}
     alias:
@@ -68,6 +70,7 @@ parameters:
  profile: {{ cluster_name }}-node
  numcpus: 4
  memory: 16384
+ rhnregister: false
  disks:
   - size: 60
   - size: 60
@@ -76,6 +79,7 @@ parameters:
 {% for node in range(0, nodes | int) %}
 {{ cluster_name }}-node0{{ node + 1 }}:
  profile: {{ cluster_name }}-node
+ rhnregister: false
  disks:
   - size: 60
   - size: 60
