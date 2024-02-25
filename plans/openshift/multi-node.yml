@@ -5,11 +5,15 @@ parameters:
  net: 'default'
  nodes: 2
  version: '3.11'
+ errata: '3.11'
  glusterfs: false
  glusterfs_disk: vdc
- rhel_template: 'rhel-server-7.6-x86_64-kvm.qcow2'
+ rhel_template: 'rhel7'
  etcds: 0
  time_zone: 'UTC'
+ oreg_url: 'registry.access.redhat.com/openshift3/ose-${component}:${version}'
+ oreg_auth_user: ''
+ oreg_auth_password: ''
 
 {{ cluster_name }}-node:
  type: profile
@@ -22,6 +26,7 @@ parameters:
  nets:
   - {{ net }}
  pool: default
+ rhnregister: false
  scripts: 
   - ~/.kcli/scripts/register.sh
   - scripts/host-preparation.sh-{{ version }}
@@ -33,6 +38,7 @@ parameters:
  profile: {{ cluster_name }}-node
  numcpus: 2
  memory: 4096
+ rhnregister: false
  nets:
   - name: {{ net }}
     alias:
@@ -55,6 +61,8 @@ parameters:
  files:
   - path: /root/hosts
     origin: files/hosts-multi-node-{{ version }}
+  - path: /root/ansible.cfg
+    origin: files/ansible.cfg-{{ version }}
 {% endfor %}
 
 {% for etcd in range(0, etcds | int) %}
@@ -62,6 +70,7 @@ parameters:
  profile: {{ cluster_name }}-node
  numcpus: 4
  memory: 16384
+ rhnregister: false
  disks:
   - size: 60
   - size: 60
@@ -70,10 +79,11 @@ parameters:
 {% for node in range(0, nodes | int) %}
 {{ cluster_name }}-node0{{ node + 1 }}:
  profile: {{ cluster_name }}-node
+ rhnregister: false
  disks:
   - size: 60
   - size: 60
-{% if glusterfs -%}
+{% if glusterfs %}
   - size: 100
-{%- endif %}
+{% endif %}
 {% endfor %}

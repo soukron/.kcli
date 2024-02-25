@@ -6,9 +6,9 @@ default:
   nested: true
   start: true
   tunnel: false
-  template: rhel-server-7.7-x86_64-kvm.qcow2
-  numcpus: 1
-  memory: 512
+  template: rhel-server-7.9-update-12-x86_64-kvm.qcow2
+  numcpus: 2
+  memory: 1024
   pool: default
   diskthin: true
   disks:
